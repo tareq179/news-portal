@@ -1,0 +1,43 @@
+.hero{
+    // margin-top: 60px;
+    position: relative;
+
+    .heroTitle{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #444;
+        font-family: "Lora", serif;
+    }
+
+    .heroTitleSm{
+        position: absolute;
+        top: 18%;
+        font-size: 20px;
+    }
+    .heroTitleLg{
+        position: absolute;
+        top: 20%;
+        font-size: 100px;
+    }
+
+    .heroImg{
+        width: 100%;
+        height: 500px;
+        filter: brightness(70%);
+        // margin-top: 60px;
+        object-fit: cover;
+    }
+
+    .heroInfo{
+        color: #fff;
+        font-family: "Lora", serif;
+
+        .infoTitle{
+            position: absolute;
+            bottom: 10%;
+            font-size: 30px;
+            margin-left: 20px;
+        }
+    }
+}

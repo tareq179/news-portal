@@ -1,0 +1,30 @@
+.singlePost{
+    flex: 9;
+
+    .singlePostWrapper{
+        padding: 20px;
+        padding-right: 0;
+        display: flex;
+        flex-direction: column;
+
+        .singlePostTitle{
+            text-align: center;
+            margin: 10px;
+            font-family: "Lora", serif;
+            font-size: 28px;
+        }
+
+        .singlePostImg{
+            width: 100%;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .singlePostDesc {
+            margin-top: 20px;
+            color: #666;
+            font-size: 18px;
+            line-height: 25px;
+          }
+    }
+}
