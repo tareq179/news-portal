@@ -1,6 +1,14 @@
 import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Login.scss";
+import {
+    createUserWithEmailAndPassword,
+    handleGoogleSignIn,
+    handleSignOut,
+    initializeLoginFramework,
+    setJWTToken,
+    signInWithEmailAndPassword,
+  } from "./LoginManager";
 
 const Login = () => {
     const userRef = useRef();
