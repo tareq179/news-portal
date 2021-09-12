@@ -1,6 +1,10 @@
-import './TopBar.scss'
+import './TopBar.scss';
+import React, { useContext } from 'react';
+import { Link } from "react-router-dom";
+import { UserContext } from '../../App';
 
 const TopBar = () => {
+    const [ isAdmin, loggedInUser] = useContext(UserContext);
     return (
         <div className="topBar">
             <div className="topLeft">
@@ -11,21 +15,42 @@ const TopBar = () => {
             </div>
             <div className="topCenter">
                 <ul className="topList">
-                    <li className="topListItem">Home</li>
-                    <li className="topListItem">About</li>
-                    <li className="topListItem">Contact</li>
-                    <li className="topListItem">Write</li>
+                <li className="topListItem">
+            <Link className="link" to="/">
+              HOME
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/">
+              ABOUT
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/">
+              CONTACT
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/write">
+              {isAdmin && "WRITE"}
+            </Link>
+          </li>
                 </ul>
             </div>
             <div className="topRight">
-                <ul className="topList">
-                    <li className="topListItem">
-                        LOGIN
-                    </li>
-                    <li className="topListItem">
-                        REGISTER
-                    </li>
-                </ul>
+            {loggedInUser ? (
+            <Link to="/login">
+                <img className="topImg" src={loggedInUser.photoURL} alt="" />
+            </Link>
+            ) : (
+                    <ul className="topList">
+                        <li className="topListItem">
+                        <Link className="link" to="/login">
+                            LOGIN
+                        </Link>
+                        </li>
+                    </ul>
+            )}
             </div>
         </div>
     )
