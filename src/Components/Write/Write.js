@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useContext, useState } from "react";
+import { UserContext } from "../../App";
 import "./write.scss";
 
 const Write = () => {
@@ -6,29 +8,32 @@ const Write = () => {
         const [title, setTitle] = useState("");
         const [desc, setDesc] = useState("");
         const [file, setFile] = useState(null);
-        // const { user } = useContext(Context);
+        const { loggedInUser } = useContext(UserContext);
 
         const handleSubmit = async (e) => {
             e.preventDefault();
-            // const newPost = {
-            // username: user.username,
-            // title,
-            // desc,
-            // };
-            // if (file) {
-            // const data =new FormData();
-            // const filename = Date.now() + file.name;
-            // data.append("name", filename);
-            // data.append("file", file);
-            // newPost.photo = filename;
-            // try {
-            //     await axios.post("/upload", data);
-            // } catch (err) {}
-            // }
-            // try {
-            // const res = await axios.post("/posts", newPost);
-            // window.location.replace("/post/" + res.data._id);
-            // } catch (err) {}
+            const newPost = {
+            username: loggedInUser.username,
+            title,
+            desc,
+            };
+            
+            if (file) {
+            const data =new FormData();
+            data.set("key", "bd4c105de11429260d1038b73f7d85c7");
+            data.append("image", data.image[0]);
+            try {
+                const res = await axios.post(
+                    "https://api.imgbb.com/1/upload",
+                    data
+                  );
+                  newPost.photo = res.data.data.display_url;
+            } catch (err) {}
+            }
+            try {
+            const res = await axios.post("https://peaceful-refuge-93681.herokuapp.com/posts", newPost);
+            window.location.replace("https://peaceful-refuge-93681.herokuapp.com/post/" + res.data._id);
+            } catch (err) {}
         };
     return (
         <div className="write">
